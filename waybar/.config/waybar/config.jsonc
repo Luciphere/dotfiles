@@ -19,14 +19,16 @@
     "custom/battery-t480",
     "custom/power_profile"
   ],
-  "hyprland/workspaces": {
+
+"hyprland/workspaces": {
     "show-special": true,
-    "format": "{name}",
+    "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
-      "special": "special"
+      "special": "󰝚"
     }
   },
+  
   "custom/taskwarrior-status": {
     "format": "{icon}",
     "format-icons": {
@@ -105,7 +107,7 @@
     "spacing": 10
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}  {volume}%",
     "format-muted": "󰝟 Mute",
     "format-icons": {
       "default": [
