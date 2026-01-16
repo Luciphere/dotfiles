@@ -1,0 +1,37 @@
+[global]
+    monitor = 0
+    follow = mouse
+    width = 300
+    height = 300
+    origin = top-right
+    offset = 10x10
+    scale = 0
+    notification_limit = 5
+    
+    ### Udseende ###
+    transparency = 10
+    separator_height = 2
+    padding = 8
+    horizontal_padding = 10
+    text_icon_padding = 0
+    frame_width = 2
+    frame_color = "#5e81ac"  # Den klassiske Nordic blå
+    separator_color = frame
+    font = Sans 10
+    corner_radius = 10
+
+[urgency_low]
+    background = "#2e3440" # Mørk Nordic Grey
+    foreground = "#d8dee9"
+    timeout = 5
+
+[urgency_normal]
+    background = "#3b4252" # Lidt lysere grå
+    foreground = "#e5e9f0"
+    timeout = 10
+
+[urgency_critical]
+    background = "#bf616a" # Nordic rød til advarsler
+    foreground = "#eceff4"
+    frame_color = "#d08770"
+    timeout = 0
