@@ -1,0 +1,120 @@
+{
+  "layer": "top",
+  "position": "top",
+  "locale": "da_DK",
+  "height": 34,
+  "modules-left": [
+    "custom/power",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/taskwarrior-status",
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "custom/battery-t480",
+    "custom/power_profile"
+  ],
+  "hyprland/workspaces": {
+    "show-special": true,
+    "format": "{name}",
+    "on-click": "activate",
+    "format-icons": {
+      "special": "special"
+    }
+  },
+  "custom/taskwarrior-status": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "  ",
+      "due": "  !"
+    },
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/taskwarrior-status.sh",
+    "interval": 60,
+    "tooltip": true,
+    "on-click": "alacritty -e bash -c '$HOME/.config/waybar/scripts/taskwarrior-add.sh'",
+    "on-click-right": "alacritty -e bash -c '$HOME/.config/waybar/scripts/taskwarrior-done.sh'"
+  },
+  "custom/power_profile": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/hypr/scripts/waybar_power_status.sh",
+    "on-click": "~/.config/hypr/scripts/power_profile.sh",
+    "interval": 5,
+    "tooltip": true
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "~/.config/hypr/scripts/powermenu.sh"
+  },
+  "clock": {
+    "format": "   {:L%H:%M | %A %d. %B}",
+    "locale": "da_DK.UTF-8",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "tz_up",
+      "on-scroll-down": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    }
+  },
+  "bluetooth": {
+    "format": "",
+    "format-connected": "󰂱",
+    "format-disabled": "󰂲",
+    "on-click": "kitty bluetui",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+  },
+  "custom/battery-t480": {
+    "exec": "~/.config/waybar/battery-t480.sh",
+    "interval": 10,
+    "format": "{}",
+    "markup": "none",
+    "on-click": "kitty sh -c 'upower -d; read'"
+  },
+  "network": {
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "on-click": "kitty sh -c 'impala'"
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Mute",
+    "format-icons": {
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "on-click": "pavucontrol",
+    "scroll-step": 5
+  }
+}

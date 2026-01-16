@@ -1,0 +1,189 @@
+/* =========================
+   Grundindstillinger
+   ========================= */
+* {
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+  border: none;
+  border-radius: 0px;
+}
+
+/* Standard størrelse for alt tekst */
+#workspaces,
+#clock,
+#custom-taskwarrior-status,
+#cpu,
+#memory,
+#network,
+#custom-battery-t480,
+#tray,
+#custom-power,
+#custom-power_profile {
+  font-size: 13px;
+}
+
+/* =========================
+   Selve baren
+   ========================= */
+window#waybar {
+  background: rgba(20, 20, 30, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cdd6f4;
+}
+
+#Pulseaudio {
+  color: #74c7ec;
+}
+
+#pulseaudio.muted {
+  background-color: #f38ba8;
+  color: #11111b;
+}
+
+/* =========================
+   Bluetooth - STØRRELSE
+   ========================= */
+#bluetooth {
+  font-size: 16px;
+  color: #89b4fa;
+}
+
+#bluetooth.connected {
+  color: #b4befe;
+}
+
+#bluetooth.disabled {
+  color: #6c7086;
+}
+
+/* =========================
+   Fælles Boble-stil
+   ========================= */
+#workspaces,
+#pulseaudio,
+#clock,
+#cpu,
+#memory,
+#network,
+#bluetooth,
+#custom-battery-t480,
+#custom-power_profile {
+  padding: 0 12px;
+  margin: 4px 2px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+/* =========================
+   POWER PROFILE (Den nye raket/blad boble)
+   ========================= */
+#custom-power_profile.performance {
+  color: #f38ba8;
+  /* Rødlig for fart */
+  background-color: rgba(243, 139, 168, 0.15);
+}
+
+#custom-power_profile.balanced {
+  color: #89b4fa;
+  /* Blålig for balanceret */
+}
+
+#custom-power_profile.power-saver {
+  color: #a6e3a1;
+  /* Grønlig for strømsparer */
+  background-color: rgba(166, 227, 161, 0.15);
+}
+
+/* =========================
+   CUSTOM POWER (minimal fix)
+   ========================= */
+#custom-power {
+  padding-left: 10px;
+  padding-right: 16px;
+  margin: 4px 2px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+/* =========================
+   TRAY - Øget side-padding her
+   ========================= */
+#tray {
+  background: none;
+}
+
+#tray>* {
+  padding: 4px 10px;
+  margin: 4px 2px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+#tray>image {
+  margin: 0px 10px;
+}
+
+/* =========================
+   Modul-farver
+   ========================= */
+#network {
+  color: #94e2d5;
+}
+
+#cpu {
+  color: #89b4fa;
+}
+
+#memory {
+  color: #fab387;
+}
+
+#clock {
+  color: #cba6f7;
+}
+
+/* =========================
+   Workspaces
+   ========================= */
+#workspaces button {
+  padding: 0 4px;
+  margin: 0 2px;
+  color: #9399b2;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+#workspaces button.active {
+  color: #89b4fa;
+  background-color: rgba(137, 180, 250, 0.15);
+  border-radius: 6px;
+}
+
+/* --- MAGIC DESKTOP STYLING --- */
+#workspaces button.special {
+  color: #f5c2e7;
+  /* En flot pink/lilla farve */
+  margin-left: 12px;
+  /* Plads til Power-ikonet til venstre */
+  margin-right: 0px;
+  /* Plads til 1-tallet til højre */
+  padding: 0 8px;
+  font-weight: bold;
+}
+
+#workspaces button.special.active {
+  background-color: rgba(245, 194, 231, 0.2);
+  border-radius: 6px;
+}
+
+#custom-taskwarrior-status {
+  margin: 4px 2px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #cdd6f4;
+  /* Tekstfarven */
+  border-radius: 6px;
+  /* Afrundede hjørner */
+  padding: 0 6px;
+  /* Luft inde i boblen */
+  margin: 4px 2px;
+  /* Luft mellem boblerne */
+}
