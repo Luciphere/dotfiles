@@ -1,10 +1,32 @@
 #!/bin/bash
 
-# Configuration
+#!/bin/bash
+
+# Load config from user's home directory
+CONFIG_FILE="$HOME/.config/mtui/config"
+
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    # Defaults (will prompt user to create config)
+    NODE_IP="192.168.50.146:11000"
+    SERVER_IP="192.168.50.32:8000"
+    MUSIC_DIR="$HOME/Music"
+    
+    echo "No config found. Creating default config at $CONFIG_FILE"
+    mkdir -p "$HOME/.config/mtui"
+    cat > "$CONFIG_FILE" << EOF
+# mtui configuration
 NODE_IP="192.168.50.146:11000"
-SERVER_IP="192.168.50.32:8000"
-MUSIC_DIR="/home/mark/Musik"
+SERVER_IP="$(ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep -v 127.0.0.1 | head -1):8000"
+MUSIC_DIR="$HOME/Music"
 PLAYLIST_DIR="/tmp/mtui-playlists"
+EOF
+    echo "Please edit $CONFIG_FILE to set your IPs and music directory"
+    exit 1
+fi
+
+PLAYLIST_DIR="${PLAYLIST_DIR:-/tmp/mtui-playlists}"
 
 # Colors
 RED='\033[0;31m'
