@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 # Load config from user's home directory
 CONFIG_FILE="$HOME/.config/mtui/config"
 
@@ -45,6 +43,10 @@ mkdir -p "$PLAYLIST_DIR"
 check_http_server() {
     if ! curl -s --connect-timeout 2 "http://${SERVER_IP}/" > /dev/null 2>&1; then
         echo -e "${YELLOW}HTTP server not running. Starting it...${NC}"
+        
+        # Create symlink to playlists in music directory
+        ln -sf "$PLAYLIST_DIR" "$MUSIC_DIR/playlists"
+        
         cd "$MUSIC_DIR"
         nohup python -m http.server 8000 > /tmp/music-server.log 2>&1 &
         sleep 2
@@ -61,8 +63,10 @@ check_http_server() {
 }
 
 # Function to URL encode
+
+# Function to URL encode
 urlencode() {
-    python3 -c "import urllib.parse; print(urllib.parse.quote('$1'))"
+    python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))" "$1"
 }
 
 # Function to create M3U playlist starting from selected file
@@ -109,11 +113,8 @@ play() {
     local playlist_file=$(create_playlist_from_file "$file")
     local playlist_name=$(basename "$playlist_file")
     
-    # Copy playlist to music directory so HTTP server can serve it
-    cp "$playlist_file" "$MUSIC_DIR/"
-    
-    # Play the playlist
-    local encoded=$(urlencode "$playlist_name")
+    # Play the playlist via symlink
+    local encoded=$(urlencode "playlists/$playlist_name")
     echo -e "${CYAN}Playing:${NC} ${BOLD}$(basename "$file")${NC} ${CYAN}(+ rest of folder)${NC}"
     curl -s "http://${NODE_IP}/Play?url=http://${SERVER_IP}/${encoded}" > /dev/null
 }
