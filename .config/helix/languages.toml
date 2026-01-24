@@ -1,0 +1,27 @@
+[language-server.tinymist]
+command = "tinymist"
+config = { exportPdf = "onSave", preview.background.enabled = true }
+
+[[language]]
+name = "typst"
+language-servers = ["tinymist"]
+formatter = { command = "typstyle" }
+auto-format = true
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
+auto-format = true
+
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
+auto-format = true
+
+[[language]]
+name = "toml"
+language-servers = ["taplo"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "toml"] }
+auto-format = true

@@ -1,0 +1,33 @@
+theme = "everforest_dark"
+
+[editor]
+line-number = "relative"
+mouse = true
+cursorline = true
+auto-save = false
+color-modes = true  # Farv statusbar efter mode
+rulers = [80, 120]  # Vertical rulers
+bufferline = "multiple"  # Vis åbne buffers øverst
+true-color = true
+idle-timeout = 250  # Hurtigere completion
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false  # Vis skjulte filer i picker
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true  # Vis type hints
+
+[editor.soft-wrap]
+enable = true  # Wrap lange linjer
+
