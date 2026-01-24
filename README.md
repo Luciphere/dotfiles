@@ -41,8 +41,36 @@ Terminal interface for BluOS/Bluesound devices.
 **Requirements:** python, fzf, curl
 
 **Setup:**
-1. Configure firewall: `sudo ufw allow from YOUR_BLUOS_IP to any port 8000`
-2. Edit script variables (NODE_IP, SERVER_IP, MUSIC_DIR)
-3. Run: `mtui`
 
-See script for more details.
+1. Install dependencies:
+```bash
+   sudo pacman -S python fzf curl
+```
+
+2. Copy script:
+```bash
+   sudo cp ~/dotfiles/scripts/mtui.sh /usr/local/bin/mtui
+   sudo chmod +x /usr/local/bin/mtui
+```
+
+3. Create config file (mtui will prompt on first run, or create manually):
+```bash
+   mkdir -p ~/.config/mtui
+   nano ~/.config/mtui/config
+```
+   
+   Add:
+```bash
+   # mtui configuration
+   NODE_IP="192.168.50.146:11000"  # Your BluOS device IP
+   SERVER_IP="YOUR_COMPUTER_IP:8000"  # This computer's IP
+   MUSIC_DIR="/home/YOUR_USERNAME/Music"
+   PLAYLIST_DIR="/tmp/mtui-playlists"
+```
+
+4. Configure firewall (IMPORTANT):
+```bash
+   sudo ufw allow from 192.168.50.146 to any port 8000
+```
+
+5. Run: `mtui`
