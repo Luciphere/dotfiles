@@ -7,15 +7,24 @@ get_info() {
   upower -i "$1"
 }
 
-if get_info "$BAT1" 2>/dev/null | grep -q "state:\s*discharging"; then
-  BAT="$BAT1"
-  LABEL="BAT1"
-elif get_info "$BAT0" 2>/dev/null | grep -q "state:\s*discharging"; then
-  BAT="$BAT0"
-  LABEL="BAT0"
+HAS_BAT1=$(get_info "$BAT1" 2>/dev/null | grep -c "state:" || true)
+
+if [ "$HAS_BAT1" -gt 0 ]; then
+  # T480: dual battery — show whichever is discharging, prefer BAT1 otherwise
+  if get_info "$BAT1" 2>/dev/null | grep -q "state:\s*discharging"; then
+    BAT="$BAT1"
+    LABEL="BAT1"
+  elif get_info "$BAT0" 2>/dev/null | grep -q "state:\s*discharging"; then
+    BAT="$BAT0"
+    LABEL="BAT0"
+  else
+    BAT="$BAT1"
+    LABEL="BAT1"
+  fi
 else
-  BAT="$BAT1"
-  LABEL="BAT1"
+  # Single battery (e.g. X220)
+  BAT="$BAT0"
+  LABEL=""
 fi
 
 INFO=$(get_info "$BAT")
@@ -38,4 +47,8 @@ fi
 
 if [ "$STATE" = "charging" ]; then ICON=""; fi
 
-echo "$ICON $PERCENT ($LABEL)"
+if [ -n "$LABEL" ]; then
+  echo "$ICON $PERCENT ($LABEL)"
+else
+  echo "$ICON $PERCENT"
+fi
