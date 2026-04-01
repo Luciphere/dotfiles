@@ -23,7 +23,7 @@ valgt=$(echo -e "$options" | rofi -dmenu -i -p "System" \
 # Handling baseret på valg
 case "$valgt" in
 *"Pause"*)
-  systemctl suspend
+  hyprlock & systemctl suspend
   ;;
 *"Log ud"*)
   hyprctl dispatch exit

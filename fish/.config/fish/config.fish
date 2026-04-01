@@ -21,8 +21,8 @@ if status is-interactive
         alias ls='eza --icons --group-directories-first -1'
     end
 
-    # Fastfetch: small greeting every terminal
-    if type -q fastfetch
+    # Fastfetch: small greeting on login shells only
+    if status is-login && type -q fastfetch
         echo
         fastfetch
     end

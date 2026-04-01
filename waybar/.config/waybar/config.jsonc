@@ -39,8 +39,8 @@
     "exec": "$HOME/.config/waybar/scripts/taskwarrior-status.sh",
     "interval": 60,
     "tooltip": true,
-    "on-click": "alacritty -e bash -c '$HOME/.config/waybar/scripts/taskwarrior-add.sh'",
-    "on-click-right": "alacritty -e bash -c '$HOME/.config/waybar/scripts/taskwarrior-done.sh'"
+    "on-click": "kitty bash -c '$HOME/.config/waybar/scripts/taskwarrior-add.sh'",
+    "on-click-right": "kitty bash -c '$HOME/.config/waybar/scripts/taskwarrior-done.sh'"
   },
   "custom/power_profile": {
     "format": "{}",
@@ -74,10 +74,8 @@
     },
     "actions": {
       "on-click-right": "mode",
-      "on-scroll-up": "tz_up",
-      "on-scroll-down": "tz_down",
       "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down",
+      "on-scroll-down": "shift_down"
     }
   },
   "bluetooth": {
