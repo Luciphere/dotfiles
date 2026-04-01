@@ -45,7 +45,7 @@ elif [ "$P" -le 75 ]; then
   ICON=""
 fi
 
-if [ "$STATE" = "charging" ]; then ICON="󰂄"; fi
+if [ "$STATE" = "charging" ]; then ICON="${ICON} "; fi
 if [ "$STATE" = "fully-charged" ]; then ICON=""; PERCENT="100%"; fi
 
 if [ -n "$LABEL" ]; then
