@@ -19,6 +19,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Screenshots     | Grim + Slurp    |
 | Bluetooth       | Blueman         |
 | Cloud sync      | Rclone          |
+| Task manager    | Taskwarrior + taskwarrior-tui |
 | Resource monitor| Btop            |
 | System info     | Fastfetch       |
 
@@ -111,6 +112,11 @@ rclone mount onedrive: ~/OneDrive --vfs-cache-mode full --daemon
 ### Fonts
 ```bash
 sudo pacman -S ttf-fantasque-nerd
+```
+
+### Task management
+```bash
+sudo pacman -S task taskwarrior-tui
 ```
 
 ### Utilities
