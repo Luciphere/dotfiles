@@ -15,6 +15,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Status bar      | Waybar          |
 | Notifications   | Dunst           |
 | Wallpaper       | awww            |
+| Login manager   | SDDM            |
 | Screen locker   | Hyprlock + Hypridle |
 | Screenshots     | Grim + Slurp    |
 | Bluetooth       | Blueman         |
@@ -56,6 +57,12 @@ sudo pacman -S waybar dunst
 ### Wallpaper
 ```bash
 yay -S awww
+```
+
+### Login manager
+```bash
+sudo pacman -S sddm
+sudo systemctl enable sddm
 ```
 
 ### Screen lock
@@ -147,6 +154,16 @@ stow --target="$HOME" kitty
 ```
 
 > **Note:** Stow creates symlinks from `~/.config/<app>` to the corresponding folder in this repo. If a config already exists, remove or back it up first.
+
+### SDDM (login manager)
+
+SDDM config lives at `/etc/sddm.conf` (system-level) and cannot be managed with Stow. Apply it manually:
+
+```bash
+sudo cp ~/dotfiles/sddm/sddm.conf /etc/sddm.conf
+```
+
+This sets Hyprland as the default session. SDDM will show a login screen on boot where you enter your username and password.
 
 ---
 
