@@ -86,8 +86,6 @@ sudo pacman -S waypaper
 
 `awww` is the animation/rendering daemon. `waypaper` is a GUI wallpaper picker that persists the last selection — Hyprland runs `waypaper --restore` on login to reload it.
 
-> **Note:** `hyprpaper.conf` exists in the repo but is unused — it's a legacy file from before the switch to awww+waypaper. Do not install `hyprpaper`.
-
 ### Screen lock
 ```bash
 sudo pacman -S hyprlock hypridle
