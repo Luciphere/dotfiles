@@ -18,7 +18,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Login manager   | SDDM            |
 | Screen locker   | Hyprlock + Hypridle |
 | Screenshots     | Grim + Slurp    |
-| Bluetooth       | Blueman         |
+| Bluetooth       | Blueman + bluetui |
 | WiFi            | iwd + systemd-resolved |
 | Cloud sync      | Rclone          |
 | Task manager    | Taskwarrior + taskwarrior-tui |
@@ -90,11 +90,11 @@ sudo pacman -S brightnessctl
 
 ### Bluetooth
 ```bash
-sudo pacman -S blueman
+sudo pacman -S blueman bluetui
 sudo systemctl enable --now bluetooth
 ```
 
-Blueman provides a system tray applet (`blueman-applet`) that starts automatically with Hyprland. To pair a device for the first time, run `blueman-manager`.
+Blueman provides a system tray applet (`blueman-applet`) that starts automatically with Hyprland. To pair a device for the first time, run `blueman-manager`. The Waybar bluetooth widget opens `bluetui` for a quick TUI overview.
 
 ### WiFi
 ```bash
