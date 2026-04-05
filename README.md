@@ -19,6 +19,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Screen locker   | Hyprlock + Hypridle |
 | Screenshots     | Grim + Slurp    |
 | Bluetooth       | Blueman         |
+| WiFi            | iwd + systemd-resolved |
 | Cloud sync      | Rclone          |
 | Task manager    | Taskwarrior + taskwarrior-tui |
 | Resource monitor| Btop            |
@@ -30,7 +31,13 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 
 ### Core Hyprland stack
 ```bash
-sudo pacman -S hyprland hyprlock xdg-desktop-portal-hyprland
+sudo pacman -S hyprland xdg-desktop-portal-hyprland
+```
+
+### Login manager
+```bash
+sudo pacman -S sddm
+sudo systemctl enable sddm
 ```
 
 ### Terminal & shell
@@ -57,12 +64,6 @@ sudo pacman -S waybar dunst
 ### Wallpaper
 ```bash
 yay -S awww
-```
-
-### Login manager
-```bash
-sudo pacman -S sddm
-sudo systemctl enable sddm
 ```
 
 ### Screen lock
@@ -93,6 +94,28 @@ sudo pacman -S blueman
 sudo systemctl enable --now bluetooth
 ```
 
+Blueman provides a system tray applet (`blueman-applet`) that starts automatically with Hyprland. To pair a device for the first time, run `blueman-manager`.
+
+### WiFi
+```bash
+sudo pacman -S iwd
+sudo systemctl enable --now iwd systemd-resolved
+```
+
+Apply the iwd config (enables IP configuration and uses systemd-resolved for DNS):
+```bash
+sudo cp ~/dotfiles/iwd/main.conf /etc/iwd/main.conf
+sudo systemctl restart iwd
+```
+
+To connect to a WiFi network:
+```bash
+iwctl
+[iwd] station wlan0 scan
+[iwd] station wlan0 get-networks
+[iwd] station wlan0 connect "Network Name"
+```
+
 ### Cloud sync (Dropbox + OneDrive)
 ```bash
 sudo pacman -S rclone
@@ -118,6 +141,42 @@ rclone mount dropbox: ~/Dropbox --vfs-cache-mode full --daemon
 rclone mount onedrive: ~/OneDrive --vfs-cache-mode full --daemon
 ```
 
+### Power management (TLP)
+```bash
+sudo pacman -S tlp tlp-rdw
+sudo systemctl enable --now tlp
+```
+
+TLP handles battery optimization and power saving automatically on laptops.
+
+### Performance (ananicy-cpp)
+```bash
+sudo pacman -S ananicy-cpp
+sudo systemctl enable --now ananicy-cpp
+```
+
+Automatically adjusts process priorities for better responsiveness.
+
+### Firewall (ufw)
+```bash
+sudo pacman -S ufw
+sudo ufw enable
+sudo systemctl enable --now ufw
+```
+
+### mDNS / local network discovery (avahi)
+```bash
+sudo pacman -S avahi
+sudo systemctl enable --now avahi-daemon
+```
+
+### BTRFS snapshots (snapper)
+```bash
+sudo pacman -S snapper
+```
+
+Snapshots are managed automatically via `limine-snapper-sync`.
+
 ### Fonts
 ```bash
 sudo pacman -S ttf-fantasque-nerd
@@ -130,7 +189,7 @@ sudo pacman -S task taskwarrior-tui
 
 ### Utilities
 ```bash
-sudo pacman -S btop fastfetch
+sudo pacman -S btop fastfetch micro
 ```
 
 ---
@@ -155,15 +214,18 @@ stow --target="$HOME" kitty
 
 > **Note:** Stow creates symlinks from `~/.config/<app>` to the corresponding folder in this repo. If a config already exists, remove or back it up first.
 
-### SDDM (login manager)
+### System-level configs (not managed by Stow)
 
-SDDM config lives at `/etc/sddm.conf` (system-level) and cannot be managed with Stow. Apply it manually:
+These files live under `/etc/` and must be copied manually with sudo:
 
 ```bash
+# SDDM login manager
 sudo cp ~/dotfiles/sddm/sddm.conf /etc/sddm.conf
-```
 
-This sets Hyprland as the default session. SDDM will show a login screen on boot where you enter your username and password.
+# WiFi (iwd)
+sudo cp ~/dotfiles/iwd/main.conf /etc/iwd/main.conf
+sudo systemctl restart iwd
+```
 
 ---
 
