@@ -14,7 +14,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | App launcher    | Rofi            |
 | Status bar      | Waybar          |
 | Notifications   | Dunst           |
-| Wallpaper       | awww            |
+| Wallpaper       | awww + waypaper |
 | Login manager   | Ly              |
 | Screen locker   | Hyprlock + Hypridle |
 | Screenshots     | Grim + Slurp    |
@@ -22,6 +22,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | WiFi            | iwd + systemd-resolved |
 | Cloud sync      | Rclone          |
 | Task manager    | Taskwarrior + taskwarrior-tui + Timewarrior |
+| AI CLI          | mods            |
 | Resource monitor| Btop            |
 | System info     | Fastfetch       |
 
@@ -38,7 +39,7 @@ sudo pacman -S hyprland xdg-desktop-portal-hyprland
 ```bash
 sudo pacman -S ly
 sudo systemctl disable sddm  # if previously enabled
-sudo systemctl enable ly
+sudo systemctl enable ly@tty2
 ```
 
 Ly is a minimal TUI display manager. Its config lives at `/etc/ly/config.ini` — defaults work fine for Hyprland. One recommended tweak:
@@ -53,6 +54,8 @@ sudo nano /etc/ly/config.ini
 ```
 
 Ly picks up Wayland sessions from `/usr/share/wayland-sessions/`, so Hyprland will appear in the session list automatically.
+
+> **Note:** `ly` only ships `ly@.service` (a templated unit). `systemctl enable ly` will fail — always use `ly@tty2`.
 
 ### Terminal & shell
 ```bash
@@ -78,7 +81,12 @@ sudo pacman -S waybar dunst
 ### Wallpaper
 ```bash
 yay -S awww
+sudo pacman -S waypaper
 ```
+
+`awww` is the animation/rendering daemon. `waypaper` is a GUI wallpaper picker that persists the last selection — Hyprland runs `waypaper --restore` on login to reload it.
+
+> **Note:** `hyprpaper.conf` exists in the repo but is unused — it's a legacy file from before the switch to awww+waypaper. Do not install `hyprpaper`.
 
 ### Screen lock
 ```bash
@@ -193,24 +201,31 @@ Snapshots are managed automatically via `limine-snapper-sync`.
 
 ### Fonts
 ```bash
-sudo pacman -S ttf-fantasque-nerd
+sudo pacman -S ttf-jetbrains-mono-nerd
 ```
+
+> **Note:** `waybar/style.css` uses `JetBrainsMono Nerd Font`. Without this package, Nerd Font icons (Bluetooth, etc.) fall back to Adwaita 3D icons.
 
 ### Task management
 ```bash
-sudo pacman -S task taskwarrior-tui timew
+sudo pacman -S task taskwarrior-tui timewarrior
 ```
 
-Apply the taskwarrior config (includes the Timewarrior hook):
+After stowing taskwarrior config, install the Timewarrior hook for automatic time tracking:
 ```bash
-stow --target="$HOME" taskwarrior
+mkdir -p ~/.task/hooks
+cp /usr/share/doc/timewarrior/ext/on-modify.timewarrior ~/.task/hooks/
 chmod +x ~/.task/hooks/on-modify.timewarrior
 ```
 
-This sets up automatic time tracking: `task 1 start` starts a Timewarrior timer, `task 1 stop`/`task 1 done` stops it. View time logs with:
+This makes `task 1 start` automatically start a Timewarrior timer and `task 1 done`/`task 1 stop` stop it. View with `timew summary`.
+
+### AI CLI (mods)
 ```bash
-timew summary
+yay -S mods
 ```
+
+`mods` is Charm's AI CLI tool. Config is managed by Stow — see `mods/` in this repo. After stowing, edit `~/.config/mods/mods.yml` to set your API key and preferred model.
 
 ### Utilities
 ```bash
