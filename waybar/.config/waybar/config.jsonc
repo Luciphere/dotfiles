@@ -105,7 +105,7 @@
     "spacing": 10
   },
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
+    "format": "{icon} {volume}%",
     "format-muted": "󰝟 Mute",
     "format-icons": {
       "default": [
