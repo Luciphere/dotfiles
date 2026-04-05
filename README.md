@@ -21,7 +21,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Bluetooth       | Blueman + bluetui |
 | WiFi            | iwd + systemd-resolved |
 | Cloud sync      | Rclone          |
-| Task manager    | Taskwarrior + taskwarrior-tui |
+| Task manager    | Taskwarrior + taskwarrior-tui + Timewarrior |
 | Resource monitor| Btop            |
 | System info     | Fastfetch       |
 
@@ -198,7 +198,18 @@ sudo pacman -S ttf-fantasque-nerd
 
 ### Task management
 ```bash
-sudo pacman -S task taskwarrior-tui
+sudo pacman -S task taskwarrior-tui timew
+```
+
+Apply the taskwarrior config (includes the Timewarrior hook):
+```bash
+stow --target="$HOME" taskwarrior
+chmod +x ~/.task/hooks/on-modify.timewarrior
+```
+
+This sets up automatic time tracking: `task 1 start` starts a Timewarrior timer, `task 1 stop`/`task 1 done` stops it. View time logs with:
+```bash
+timew summary
 ```
 
 ### Utilities
@@ -217,7 +228,7 @@ cd ~/dotfiles
 
 Apply all configs at once:
 ```bash
-stow --target="$HOME" btop dunst fastfetch fish helix hypr kitty micro mods waybar
+stow --target="$HOME" btop dunst fastfetch fish helix hypr kitty micro mods taskwarrior waybar
 ```
 
 Or apply individually, e.g.:
