@@ -15,7 +15,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Status bar      | Waybar          |
 | Notifications   | Dunst           |
 | Wallpaper       | awww            |
-| Screen locker   | Hyprlock        |
+| Screen locker   | Hyprlock + Hypridle |
 | Screenshots     | Grim + Slurp    |
 | Bluetooth       | Blueman         |
 | Cloud sync      | Rclone          |
@@ -60,8 +60,10 @@ yay -S awww
 
 ### Screen lock
 ```bash
-sudo pacman -S hyprlock
+sudo pacman -S hyprlock hypridle
 ```
+
+Hypridle dims the screen after 5 min, locks after 10 min, and suspends after 15 min. It starts automatically with Hyprland.
 
 ### Screenshots
 ```bash
