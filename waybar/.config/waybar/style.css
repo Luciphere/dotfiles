@@ -70,10 +70,14 @@ window#waybar {
 #cpu,
 #memory,
 #network,
-#bluetooth,
 #custom-battery-t480,
 #custom-power_profile {
   padding: 0 12px;
+  margin: 4px 2px;
+}
+
+#bluetooth {
+  padding: 0 4px;
   margin: 4px 2px;
 }
 
