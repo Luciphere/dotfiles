@@ -15,7 +15,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Status bar      | Waybar          |
 | Notifications   | Dunst           |
 | Wallpaper       | awww            |
-| Login manager   | SDDM            |
+| Login manager   | Ly              |
 | Screen locker   | Hyprlock + Hypridle |
 | Screenshots     | Grim + Slurp    |
 | Bluetooth       | Blueman + bluetui |
@@ -36,9 +36,23 @@ sudo pacman -S hyprland xdg-desktop-portal-hyprland
 
 ### Login manager
 ```bash
-sudo pacman -S sddm
-sudo systemctl enable sddm
+sudo pacman -S ly
+sudo systemctl disable sddm  # if previously enabled
+sudo systemctl enable ly
 ```
+
+Ly is a minimal TUI display manager. Its config lives at `/etc/ly/config.ini` — defaults work fine for Hyprland. One recommended tweak:
+
+```ini
+allow_empty_password = true
+```
+
+This lets you log in without a password if your account has none set (common on single-user setups). Edit with:
+```bash
+sudo nano /etc/ly/config.ini
+```
+
+Ly picks up Wayland sessions from `/usr/share/wayland-sessions/`, so Hyprland will appear in the session list automatically.
 
 ### Terminal & shell
 ```bash
@@ -219,9 +233,6 @@ stow --target="$HOME" kitty
 These files live under `/etc/` and must be copied manually with sudo:
 
 ```bash
-# SDDM login manager
-sudo cp ~/dotfiles/sddm/sddm.conf /etc/sddm.conf
-
 # WiFi (iwd)
 sudo cp ~/dotfiles/iwd/main.conf /etc/iwd/main.conf
 sudo systemctl restart iwd
