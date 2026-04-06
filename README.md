@@ -6,6 +6,7 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 
 | Component       | Program          |
 |----------------|-----------------|
+| Browser         | Zen Browser     |
 | Window manager  | Hyprland        |
 | Terminal        | Kitty           |
 | Shell           | Fish            |
@@ -223,8 +224,7 @@ This makes `task 1 start` automatically start a Timewarrior timer and `task 1 do
 The Waybar task widget opens `taskr` — a custom Bubbletea TUI built on top of Taskwarrior. Install the latest binary directly from GitHub:
 
 ```bash
-sudo curl -L https://github.com/Luciphere/taskr/releases/latest/download/taskr \
-  -o /usr/local/bin/taskr && sudo chmod +x /usr/local/bin/taskr
+sudo curl -L https://github.com/Luciphere/taskr/releases/latest/download/taskr -o /usr/local/bin/taskr && sudo chmod +x /usr/local/bin/taskr
 ```
 
 Run with `taskr`.
@@ -285,7 +285,7 @@ sudo systemctl restart iwd
 | Shortcut             | Action                        |
 |---------------------|-------------------------------|
 | `Super + Q`         | Open terminal (Kitty)         |
-| `Super + W`         | Open browser (Firefox)        |
+| `Super + W`         | Open browser (Zen Browser)    |
 | `Super + E`         | Open file manager (Yazi)      |
 | `Super + Space`     | App launcher (Rofi)           |
 | `Super + C`         | Close active window           |
