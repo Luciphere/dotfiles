@@ -39,7 +39,7 @@
     "exec": "$HOME/.config/waybar/scripts/taskwarrior-status.sh",
     "interval": 60,
     "tooltip": true,
-    "on-click": "kitty -- taskwarrior-tui",
+    "on-click": "kitty -- taskr",
     "on-click-right": "kitty bash -c '$HOME/.config/waybar/scripts/taskwarrior-add.sh'"
   },
   "custom/power_profile": {

@@ -206,7 +206,7 @@ sudo pacman -S ttf-jetbrains-mono-nerd
 
 ### Task management
 ```bash
-sudo pacman -S task taskwarrior-tui timewarrior
+sudo pacman -S task timewarrior
 ```
 
 After stowing taskwarrior config, install the Timewarrior hook for automatic time tracking:
@@ -217,6 +217,20 @@ chmod +x ~/.task/hooks/on-modify.timewarrior
 ```
 
 This makes `task 1 start` automatically start a Timewarrior timer and `task 1 done`/`task 1 stop` stop it. View with `timew summary`.
+
+#### taskr (custom Taskwarrior TUI)
+
+The Waybar task widget opens `taskr` — a custom Bubbletea TUI built on top of Taskwarrior. Build and install it from source:
+
+```bash
+sudo pacman -S go
+git clone https://github.com/Luciphere/taskr.git ~/taskr
+cd ~/taskr
+go build -o taskr .
+sudo cp taskr /usr/local/bin/taskr
+```
+
+Run with `taskr`.
 
 ### AI CLI (mods)
 ```bash
