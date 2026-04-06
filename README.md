@@ -225,6 +225,11 @@ yay -S mods
 
 `mods` is Charm's AI CLI tool. Config is managed by Stow — see `mods/` in this repo. After stowing, edit `~/.config/mods/mods.yml` to set your API key and preferred model.
 
+### Musik (Spotify)
+```bash
+sudo pacman -S spotify-launcher
+```
+
 ### Utilities
 ```bash
 sudo pacman -S btop fastfetch micro
