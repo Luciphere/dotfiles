@@ -7,7 +7,6 @@ Personal configuration files for my CachyOS / Arch Linux setup, managed with [GN
 | Component       | Program          |
 |----------------|-----------------|
 | Window manager  | Hyprland        |
-| Monitor management | Kanshi       |
 | Terminal        | Kitty           |
 | Shell           | Fish            |
 | Editor          | Helix           |
@@ -219,18 +218,6 @@ chmod +x ~/.task/hooks/on-modify.timewarrior
 
 This makes `task 1 start` automatically start a Timewarrior timer and `task 1 done`/`task 1 stop` stop it. View with `timew summary`.
 
-### Monitor management (kanshi)
-```bash
-sudo pacman -S kanshi
-```
-
-Kanshi skifter automatisk skærmprofil baseret på hvilke skærme der er tilsluttet. To profiler er defineret:
-
-- **laptop** — kun den interne skærm aktiv (LVDS-1)
-- **ekstern** — intern skærm slukket, ekstern skærm (DP-2) aktiv som eneste skærm
-
-Kanshi startes automatisk af Hyprland. Config ligger i `kanshi/.config/kanshi/config` og stowes som normalt.
-
 ### AI CLI (mods)
 ```bash
 yay -S mods
@@ -254,7 +241,7 @@ cd ~/dotfiles
 
 Apply all configs at once:
 ```bash
-stow --target="$HOME" btop dunst fastfetch fish helix hypr kanshi kitty micro mods taskwarrior waybar
+stow --target="$HOME" btop dunst fastfetch fish helix hypr kitty micro mods taskwarrior waybar
 ```
 
 Or apply individually, e.g.:
