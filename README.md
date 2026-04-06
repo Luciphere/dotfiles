@@ -220,14 +220,11 @@ This makes `task 1 start` automatically start a Timewarrior timer and `task 1 do
 
 #### taskr (custom Taskwarrior TUI)
 
-The Waybar task widget opens `taskr` — a custom Bubbletea TUI built on top of Taskwarrior. Build and install it from source:
+The Waybar task widget opens `taskr` — a custom Bubbletea TUI built on top of Taskwarrior. Install the latest binary directly from GitHub:
 
 ```bash
-sudo pacman -S go
-git clone https://github.com/Luciphere/taskr.git ~/taskr
-cd ~/taskr
-go build -o taskr .
-sudo cp taskr /usr/local/bin/taskr
+sudo curl -L https://github.com/Luciphere/taskr/releases/latest/download/taskr \
+  -o /usr/local/bin/taskr && sudo chmod +x /usr/local/bin/taskr
 ```
 
 Run with `taskr`.
