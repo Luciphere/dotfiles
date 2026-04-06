@@ -246,7 +246,7 @@ cd ~/dotfiles
 
 Apply all configs at once:
 ```bash
-stow --target="$HOME" btop dunst fastfetch fish helix hypr kitty micro mods taskwarrior waybar
+stow --target="$HOME" btop dunst fastfetch fish helix hypr kitty micro mods taskwarrior waybar waypaper
 ```
 
 Or apply individually, e.g.:
