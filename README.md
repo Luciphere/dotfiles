@@ -80,7 +80,7 @@ sudo pacman -S waybar dunst
 
 ### Wallpaper
 ```bash
-yay -S awww
+sudo pacman -S awww
 sudo pacman -S waypaper
 ```
 
@@ -220,7 +220,7 @@ This makes `task 1 start` automatically start a Timewarrior timer and `task 1 do
 
 ### AI CLI (mods)
 ```bash
-yay -S mods
+paru -S mods
 ```
 
 `mods` is Charm's AI CLI tool. Config is managed by Stow — see `mods/` in this repo. After stowing, edit `~/.config/mods/mods.yml` to set your API key and preferred model.
