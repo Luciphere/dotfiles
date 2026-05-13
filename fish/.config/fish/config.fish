@@ -28,3 +28,4 @@ if status is-interactive
     end
 end
 set -gx EDITOR hx
+atuin init fish | source
