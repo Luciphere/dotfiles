@@ -39,8 +39,8 @@
     "exec": "$HOME/.config/waybar/scripts/taskwarrior-status.sh",
     "interval": 60,
     "tooltip": true,
-    "on-click": "kitty -- taskr",
-    "on-click-right": "kitty bash -c '$HOME/.config/waybar/scripts/taskwarrior-add.sh'"
+    "on-click": "alacritty -e taskr",
+    "on-click-right": "alacritty -e bash -c '$HOME/.config/waybar/scripts/taskwarrior-add.sh'"
   },
   "custom/power_profile": {
     "format": "{}",
@@ -82,7 +82,7 @@
     "format": "",
     "format-connected": "󰂱",
     "format-disabled": "󰂲",
-    "on-click": "kitty bluetui",
+    "on-click": "alacritty -e bluetui",
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
@@ -92,13 +92,13 @@
     "interval": 10,
     "format": "{}",
     "markup": "none",
-    "on-click": "kitty sh -c 'upower -d; read'"
+    "on-click": "alacritty -e sh -c 'upower -d; read'"
   },
   "network": {
     "format-wifi": "  {signalStrength}%",
     "format-ethernet": "󰈀",
     "format-disconnected": "󰖪",
-    "on-click": "kitty sh -c 'impala'"
+    "on-click": "alacritty -e sh -c 'impala'"
   },
   "tray": {
     "icon-size": 18,
